@@ -1,0 +1,20 @@
+CREATE TABLE Sales (
+   SaleID INT PRIMARY KEY,
+   Product VARCHAR(50),
+   Category VARCHAR(50),
+   Quantity INT,
+   Price DECIMAL(10, 2),
+   SaleDate DATE
+); 
+INSERT INTO Sales(SaleID,Product,Category,Quantity,Price,SaleDate) VALUES
+(1, 'Laptop', 'Electronics', 2, 50000, '2025-08-01'),
+(2, 'Mouse', 'Electronics', 10, 500, '2025-08-02'),
+(3, 'Chair', 'Furniture', 5, 1500, '2025-08-02'),
+(4, 'Table', 'Furniture', 3, 3000, '2025-08-03'),
+(5, 'Headphones', 'Electronics', 4, 1200, '2025-08-04'),
+(6, 'Pen', 'Stationery', 50, 10, '2025-08-05'),
+(7, 'Notebook', 'Stationery', 30, 50, '2025-08-06');
+SELECT*FROM Sales;
+SELECT SUM(Quantity) AS TotalElectronicsSold
+FROM Sales
+WHERE Category = 'Electronics';
