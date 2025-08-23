@@ -1,0 +1,12 @@
+CREATE TABLE awards( 
+id int PRIMARY KEY, 
+employee_id INT NOT NULL,
+award_date DATE NOT NULL );
+INSERT INTO awards(id,employee_id,award_date)VALUES
+(1, 1, '2022-04-01'),
+(2, 3, '2022-05-01');
+select * from awards;
+
+SELECT id,name FROM employeedata WHERE id NOT IN(SELECT employee_id FROM awards);
+
+SELECT*FROM employeedata WHERE role='Developer'AND salary > ALL(SELECT salary FROM employeedata WHERE role='Manager');
