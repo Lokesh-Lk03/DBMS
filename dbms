@@ -1,0 +1,42 @@
+CREATE TABLE Ott_platforms (
+    platform_id INT PRIMARY KEY,
+    platform_name VARCHAR(50)
+);
+CREATE TABLE Movie (
+    movie_id INT PRIMARY KEY,
+    movie_name VARCHAR(100),
+    release_year INT,
+    platform_id INT,
+    FOREIGN KEY (platform_id)
+        REFERENCES Ott_platforms(platform_id)
+        ON UPDATE CASCADE
+        ON DELETE SET NULL
+);
+
+INSERT INTO Ott_platforms VALUES (1, 'Netflix');
+INSERT INTO Ott_platforms VALUES (2, 'Amazon Prime');
+INSERT INTO Ott_platforms VALUES (3, 'Disney+ Hotstar');
+	
+Select * from Ott_platforms;
+INSERT INTO Movie VALUES (101, 'Inception', 2010, 1);
+INSERT INTO Movie VALUES (102, 'KGF', 2022, 2);
+INSERT INTO Movie VALUES (103, 'Avengers', 2019, 3);
+INSERT INTO Movie VALUES (104, 'Dangal', 2016, 2);
+
+Select * from Movie;
+
+UPDATE Movie
+SET platform_id = 3
+WHERE movie_id = 101;
+Select * from Movie;
+
+DELETE FROM Ott_platforms WHERE platform_id = 3;
+
+
+Select * from Ott_platforms;
+
+Select * from Movie;
+
+DELETE FROM Movie WHERE movie_id = 102;
+Select * from Movie;
+Select * from Ott_platforms;
