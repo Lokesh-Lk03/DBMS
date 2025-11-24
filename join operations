@@ -1,0 +1,50 @@
+CREATE TABLE Students (
+ StudentID INT PRIMARY KEY,
+ Name VARCHAR(50),
+ CourseID INT
+);
+INSERT INTO Students (StudentID, Name, CourseID) VALUES
+(1, 'Ravi', 101),
+(2, 'Priya', 102),
+(3, 'Arjun', 103),
+(4, 'Meena', NULL);
+SELECT *FROM students;
+
+CREATE TABLE Courses (
+ CourseID INT PRIMARY KEY,
+ CourseName VARCHAR(50)
+);
+INSERT INTO Courses (CourseID, CourseName) VALUES
+(101, 'DBMS'),
+(102, 'Java'),
+(104, 'Python');
+SELECT * FROM courses;
+
+EQUI JOIN
+SELECT Students.Name, Students.CourseID, Courses.CourseID, Courses.CourseName
+FROM Students
+JOIN Courses
+ON Students.CourseID = Courses.CourseID;
+
+NATURAL JOIN
+SELECT Name, CourseID, CourseName
+FROM Students
+NATURAL JOIN Courses;
+
+LEFT OUTER JOIN
+SELECT Students.Name, Courses.CourseName
+FROM Students
+LEFT OUTER JOIN Courses
+ON Students.CourseID = Courses.CourseID;
+
+RIGHT OUTER JOIN
+SELECT Students.Name, Courses.CourseName
+FROM Students
+RIGHT OUTER JOIN Courses
+ON Students.CourseID = Courses.CourseID;
+
+FULL OUTER JOIN
+SELECT Students.Name, Courses.CourseName
+FROM Students
+FULL OUTER JOIN Courses
+ON Students.CourseID = Courses.CourseID;
