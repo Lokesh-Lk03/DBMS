@@ -1,0 +1,106 @@
+CREATE TABLE employeedata (
+ id_number INT PRIMARY KEY,
+ name VARCHAR(25) NOT NULL,
+ salary INT NOT NULL,
+ role VARCHAR(15) NOT NULL
+);
+
+INSERT INTO employeedata VALUES
+(1, 'Priya Dharshini', 150000, 'Manager'),
+(2, 'Aarav Kumar', 95000, 'Manager'),
+(3, 'Sneha Ramesh', 120000, 'Developer'),
+(4, 'Vikram Raj', 220000, 'Developer'),
+(5, 'Meena Suresh', 480000, 'Developer');
+SELECT * FROM employeedata;
+
+ OUTPUT:
+CREATE TABLE awards (
+ id_number INT PRIMARY KEY,
+ employee_id INT NOT NULL,
+ award_date DATE
+);
+
+INSERT INTO awards (id_number, employee_id, award_date)
+VALUES 
+(1, 2, '2025-04-20'),
+(2, 4, '2025-07-15');
+SELECT * FROM awards;
+OUTPUT:
+
+SUBQUERIES
+SELECT id_number, name
+FROM employeedata
+WHERE id_number IN (
+ SELECT employee_id FROM awards
+);
+OUTPUT:
+
+SELECT id_number,name
+FROM employeedata
+WHERE id_number NOT IN
+(SELECT employee_id FROM awards);
+OUTPUT:
+
+SELECT * FROM employeedata
+WHERE role = 'Developer'
+ AND salary >= ALL (
+ SELECT salary FROM employeedata WHERE role = 'Manager'
+ );
+OUTPUT:
+
+CREATE TABLE Students (
+ StudentID INT PRIMARY KEY,
+ Name VARCHAR(50),
+ CourseID INT
+);
+
+INSERT INTO Students (StudentID, Name, CourseID) VALUES
+(1, 'Ravi', 101),
+(2, 'Priya', 102),
+(3, 'Arjun', 103),
+(4, 'Meena', NULL);
+SELECT *FROM students;
+ OUTPUT:
+CREATE TABLE Courses (
+ CourseID INT PRIMARY KEY,
+ CourseName VARCHAR(50)
+);
+
+INSERT INTO Courses (CourseID, CourseName) VALUES
+(101, 'DBMS'),
+(102, 'Java'),
+(104, 'Python');
+SELECT * FROM courses;
+ OUTPUT:
+
+JOIN OPERATIONS
+SELECT Students.Name, Students.CourseID, Courses.CourseID, Courses.CourseName
+FROM Students
+JOIN Courses
+ON Students.CourseID = Courses.CourseID;
+ OUTPUT:
+
+INNER JOIN
+SELECT Students.Name, Students.CourseID, Courses.CourseName
+FROM Students
+INNER JOIN Courses
+ON Students.CourseID = Courses.CourseID;
+ OUTPUT:
+
+LEFT JOIN
+SELECT Students.Name, Courses.CourseName
+FROM Students
+LEFT JOIN Courses
+ON Students.CourseID = Courses.CourseID;
+OUTPUT
+
+RIGHT JOIN#
+SELECT Students.Name, Courses.CourseName
+FROM Students
+RIGHT JOIN Courses
+ON Students.CourseID = Courses.CourseID;
+OUTPUT:
+SELECT Students.Name, Courses.CourseName
+FROM Students
+RIGHT JOIN Courses
+ON Students.CourseID = Courses.CourseID;
