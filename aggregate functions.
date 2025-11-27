@@ -1,0 +1,98 @@
+CREATE TABLE supermarket (
+ id INT PRIMARY KEY,
+ customername VARCHAR(50) NOT NULL,
+ productid INT NOT NULL,
+ productname VARCHAR(30),
+ quantity INT,
+ email VARCHAR(100) UNIQUE,
+ phoneno VARCHAR(15),
+ address VARCHAR(100)
+);
+
+
+INSERT INTO supermarket VALUES
+(1, 'Alice Johnson', 101, 'Apples', 5, 'alice.johnson@example.com', '1234567890', 'Maple St'),
+(2, 'Bob Smith', 102, 'Bananas', 3, 'bob.smith@example.com', '2345678901', 'Oak Ave'),
+(3, 'Charlie Lee', 103, 'Carrots', 10, 'charlie.lee@example.com', '3456789012', 'Pine Rd'),
+(4, 'Diana Prince', 104, 'Detergent', 2, 'diana.prince@example.com', '4567890123', 'Birch Blvd'),
+(5, 'Ethan Hunt', 105, 'Eggs', 12, 'ethan.hunt@example.com', '5678901234', 'Cedar Ln');
+SELECT * FROM supermarket;
+
+
+OUTPUT:
+
+SELECT * FROM supermarket
+WHERE productname = 'Apples';
+
+OUTPUT:
+
+SELECT * FROM supermarket
+WHERE email LIKE '%@example.com';
+OUTPUT:
+
+SELECT * FROM supermarket
+WHERE quantity BETWEEN 2 AND 10;
+OUTPUT:
+
+SELECT * FROM supermarket
+WHERE productid IN (101, 105, 107);
+OUTPUT:
+
+AGGREGATE FUNCTIONS
+create table sales(
+saleid int primary key,
+product varchar(50),
+category varchar(50),
+quantity int,
+price decimal(10,2),
+saledate date
+);
+
+insert into sales values
+(1,'laptop','electronics',2,50000,'2025-08-01'),
+(2,'mouse','electronics',10,500,'2025-08-02'),
+(3,'chair','furniture',5,1500,'2025-08-02'),
+(4,'table','furniture',3,3000,'2025-08-03'),
+(5,'pen','stationary',50,10,'2025-08-05'),
+(6,'notebook','stationary',30,50,'2025-08-06');
+select * from sales;
+
+SUM
+select sum (quantity) as totalelectronicssold
+from sales
+where category='electronics';
+OUTPUT:
+
+AVG:
+select avg(price) as avgfurnitureprice
+from sales
+where category='furniture';
+OUTPUT:
+
+MAX
+select max(quantity) as maxstationarysold
+from sales
+where category='stationary';
+OUTPUT:
+
+select sum(quantity*price) as revenue
+from sales
+where saledate>='2025-08-03';
+OUTPUT:
+
+COUNT()
+select count(*) as counthighpriceitems
+from sales
+where price>=1000;
+OUTPUT:
+
+MIN:
+select min(price) as minelectronicsprice
+from sales
+where category='electronics'and month(saledate)=8;
+OUTPUT:
+
+GROUP BY()
+select category,sum(quantity)as totalquantity
+from sales
+group by category;
