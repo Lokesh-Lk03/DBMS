@@ -1,0 +1,38 @@
+Students.xml
+ <?xml version="1.0" encoding="UTF-8"?>
+ <students xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+ xsi:noNamespaceSchemaLocation="students.xsd">
+ <student>
+ <id>101</id>
+ <name>mala</name>
+ <department>CSE</department>
+ <marks>89</marks>
+ </student>
+ <student>
+ <id>102</id>
+ <name>Anitha</name>
+ <department>ECE</department>
+ <marks>92</marks>
+ </student>
+ </students>
+ Students.xsd
+ <?xml version="1.0" encoding="UTF-8"?>
+ <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+ <xs:element name="students">
+ <xs:complexType>
+ <xs:sequence>
+ <xs:element name="student" maxOccurs="unbounded">
+ <xs:complexType>
+ <xs:sequence>
+ <xs:element name="id" type="xs:integer"/>
+ <xs:element name="name" type="xs:string"/>
+ <xs:element name="department" type="xs:string"/>
+ <xs:element name="marks" type="xs:integer"/>
+ </xs:sequence>
+ </xs:complexType>
+ </xs:element>
+ </xs:sequence>
+ </xs:complexType>
+ </xs:element>
+ </xs:schema>
+ VALIDATE:
